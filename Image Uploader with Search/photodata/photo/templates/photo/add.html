@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add new photo </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+
+<body class="m-5">
+    <center>
+        <h1>Add Photo</h1>
+        <hr>
+    </center>
+    <div class="container ">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <a href="{% url 'gallery'%}" class="btn btn-dark m-1">Back</a><br>
+                <br>
+                <div class="card p-3">
+                   
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="input-group mb-3">
+                            <input required name="image" type="file" class="form-control">
+
+                        </div>
+
+                        <div class="form-group">
+                            <label>Category</label>
+                            <select name="category" class="form-control">
+                                <option value="none">none</option>
+                                {% for category in categories %}
+                                <option value="{{category.id}}">{{category.name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label>Create New Category</label>
+                            <input name="category_new" type="text" class="form-control" placeholder="Enter New Category">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input required name="title" type="text" class="form-control" placeholder="Enter Title">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <input required name="description" type="text" class="form-control"
+                                placeholder="Enter Description">
+                        </div>
+                        <br>
+                        <input type="submit" class="btn btn-primary" value="Submit">
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
